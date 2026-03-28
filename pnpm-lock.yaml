@@ -250,7 +250,7 @@ importers:
         specifier: ^25.0.7
         version: 25.0.9
       solid-js:
-        specifier: ^1.9.5
+        specifier: ^1.9.10
         version: 1.9.10
 
   packages/solid-template-devtools:
@@ -260,7 +260,7 @@ importers:
         version: link:../template-devtools
     devDependencies:
       solid-js:
-        specifier: ^1.9.5
+        specifier: ^1.9.10
         version: 1.9.10
 
   packages/template:
