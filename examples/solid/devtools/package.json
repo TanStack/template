@@ -12,11 +12,11 @@
     "@tanstack/solid-template": "^0.0.0",
     "@tanstack/solid-template-devtools": "^0.0.0",
     "@tanstack/template": "^0.0.0",
-    "solid-js": "^1.9.10"
+    "solid-js": "^1.9.12"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-solid": "^2.11.10"
+    "typescript": "6.0.3",
+    "vite": "^8.0.10",
+    "vite-plugin-solid": "^2.11.12"
   }
 }

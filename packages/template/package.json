@@ -16,10 +16,12 @@
   },
   "keywords": [
     "tanstack",
-    "template"
+    "template",
+    "typescript"
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "test:eslint": "eslint ./src",
     "test:lib": "vitest",
@@ -33,12 +35,12 @@
   "types": "./dist/index.d.cts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./types": {
-      "require": "./dist/types.cjs",
-      "import": "./dist/types.js"
+      "import": "./dist/types.js",
+      "require": "./dist/types.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -51,6 +53,6 @@
     "src"
   ],
   "dependencies": {
-    "@tanstack/store": "^0.8.0"
+    "@tanstack/store": "^0.11.0"
   }
 }

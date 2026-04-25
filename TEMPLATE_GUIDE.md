@@ -1,6 +1,6 @@
 # TanStack Template Guide
 
-This template provides a complete TanStack library setup. Follow these steps to create a new library:
+This template provides a complete TanStack library setup. It starts with a framework-agnostic core, React and Solid adapters, matching devtools packages, docs, examples, CI, and release tooling. Follow these steps to create a new library:
 
 ## Search and Replace
 
@@ -20,6 +20,8 @@ Replace the following strings throughout the codebase:
 - Update homepage URL
 - Update description
 - Update overrides section with your package names
+- Update the `size-limit` path and limit for your core package
+- Update `copy:readme` if you add or remove packages
 
 ### 2. Package package.json files
 
@@ -38,6 +40,7 @@ Replace the following strings throughout the codebase:
 - Update .github/ISSUE_TEMPLATE/bug_report.yml
 - Update workflow files if needed
 - Update FUNDING.yml with your sponsor links
+- Update .changeset/config.json with your GitHub repository name
 
 ### 5. Source Code
 
@@ -55,6 +58,12 @@ Replace the following strings throughout the codebase:
 
 - Write comprehensive README describing your library
 - Add badges, installation instructions, usage examples
+
+### 8. Runtime and Tooling Pins
+
+- Update `.npmrc` if your project needs a different `use-node-version`
+- Update `.nvmrc` if you want local Node version managers to match `.npmrc`
+- Update `pnpm-workspace.yaml` if you add package locations or build dependencies
 
 ## Package Structure
 
@@ -75,7 +84,7 @@ template/
 
 ## Adding More Framework Adapters
 
-To add a new framework (e.g., Vue):
+This starter template ships only React and Solid adapters. To add a new framework (e.g., Vue):
 
 1. Create `packages/vue-template/` directory
 2. Copy structure from `packages/react-template/`
@@ -84,7 +93,7 @@ To add a new framework (e.g., Vue):
 5. Add example in `examples/vue/`
 6. Update docs with `framework/vue/adapter.md`
 7. Update root package.json overrides
-8. Update vitest.workspace.js
+8. Update vitest.workspace.ts
 9. Update scripts/generate-docs.ts
 
 ## Development Workflow
@@ -100,6 +109,8 @@ pnpm build:all
 pnpm test:lib
 
 # Run linting
+pnpm lint
+pnpm lint:all
 pnpm test:eslint
 
 # Format code
@@ -125,4 +136,4 @@ pnpm watch
 
 - See CONTRIBUTING.md for contribution guidelines
 - Check existing TanStack libraries for patterns
-- Refer to pacer source for complete examples
+- Refer to Hotkeys or other current TanStack libraries for complete examples

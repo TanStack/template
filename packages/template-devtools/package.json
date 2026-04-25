@@ -21,6 +21,7 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "test:eslint": "eslint ./src",
     "test:lib": "vitest --passWithNoTests",
@@ -34,8 +35,8 @@
   "types": "./dist/index.d.cts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./package.json": "./package.json"
   },
