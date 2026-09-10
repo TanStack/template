@@ -3,6 +3,8 @@ id: createTemplateSignal
 title: createTemplateSignal
 ---
 
+# Function: createTemplateSignal()
+
 ```ts
 function createTemplateSignal(template): Accessor<NoInfer<{
 }>>;

@@ -3,6 +3,8 @@ id: "@tanstack/template"
 title: "@tanstack/template"
 ---
 
+# @tanstack/template
+
 ## Classes
 
 - [Template](classes/Template.md)

@@ -3,6 +3,8 @@ id: Template
 title: Template
 ---
 
+# Class: Template
+
 Defined in: [hello.ts:4](https://github.com/TanStack/template/blob/main/packages/template/src/hello.ts#L4)
 
 ## Constructors
