@@ -3,8 +3,6 @@ id: useTemplate
 title: useTemplate
 ---
 
-# Function: useTemplate()
-
 ```ts
 function useTemplate(template): object;
 ```
