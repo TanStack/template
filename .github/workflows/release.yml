@@ -19,7 +19,8 @@ permissions:
 jobs:
   release:
     name: Release
-    if: github.repository_owner == 'TanStack'
+    # New libraries explicitly enable publishing after configuring their release setup.
+    if: github.repository_owner == 'TanStack' && vars.ENABLE_RELEASES == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -41,7 +41,7 @@ Before proceeding with development, ensure you match one of the following criter
   - Build/watch for changes with `pnpm build`/`pnpm dev`
 - Document your changes in the appropriate documentation website markdown pages
 - Run `pnpm test` to ensure all tests pass before committing
-- Create a changeset (changelog entry) for published package changes by running `pnpm changeset`. Documentation, CI, and development-only changes do not require a package release.
+- Do not add changesets or bump package versions. This template repository does not release packages; its release tooling is scaffolding for new libraries.
 - Commit your work and open a pull request
 - Submit PR for review
 

@@ -132,7 +132,9 @@ pnpm watch
 
 ## Release Process
 
-The template uses Changesets CLI 3, Changesets action 2, and the official GitHub changelog generator. The action uses `version-script`, `publish-script`, `commit-message`, `pr-title`, and `github-token` inputs, plus the `published-packages` output. Private examples are excluded from versioning and tagging.
+This repository never releases packages and does not accept changesets. The following process applies only to libraries created from the template. When initializing a library, update the template-only rules in `AGENTS.md`, `CONTRIBUTING.md`, and the pull request template, and set the GitHub Actions repository variable `ENABLE_RELEASES` to `true` after configuring publishing.
+
+The release scaffolding uses Changesets CLI 3, Changesets action 2, and the official GitHub changelog generator. The action uses `version-script`, `publish-script`, `commit-message`, `pr-title`, and `github-token` inputs, plus the `published-packages` output. Private examples are excluded from versioning and tagging.
 
 1. Make changes
 2. Run `pnpm changeset` to create a changeset
