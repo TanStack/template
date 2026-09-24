@@ -1,5 +1,9 @@
 # Installation
 
+## Requirements
+
+Packages support Node.js 20 or newer and browsers with ES2022 support. They are ESM-only: use `import` rather than `require()`. TypeScript declarations are included in `dist`; package source files and source maps are not published.
+
 ## Core Package
 
 ```bash

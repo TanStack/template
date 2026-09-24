@@ -29,6 +29,7 @@ Before proceeding with development, ensure you match one of the following criter
 
 - Fork this repository, we prefer the `feat-*` branch name style
 - Ensure you have `pnpm` installed
+- Use the Node.js version in `.nvmrc` (`nvm install && nvm use`), also pinned in `package.json` for Volta. The repository's build tools require a newer Node.js version than the published packages' Node.js 20 minimum.
 - Install projects dependencies and linkages by running `pnpm install`
 - Auto-build and auto-test files as you edit by running `pnpm dev`
 - Implement your changes and tests
@@ -40,7 +41,7 @@ Before proceeding with development, ensure you match one of the following criter
   - Build/watch for changes with `pnpm build`/`pnpm dev`
 - Document your changes in the appropriate documentation website markdown pages
 - Run `pnpm test` to ensure all tests pass before committing
-- Create a changeset (changelog entry) for your changes by running `pnpm changeset`
+- Create a changeset (changelog entry) for published package changes by running `pnpm changeset`. Documentation, CI, and development-only changes do not require a package release.
 - Commit your work and open a pull request
 - Submit PR for review
 

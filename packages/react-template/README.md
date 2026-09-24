@@ -18,7 +18,7 @@
 
 <div align="center">
   <a href="#badge">
-    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+    <img alt="Changesets" src="https://img.shields.io/badge/releases-Changesets-blue.svg">
   </a>
   <a href="#badge">
     <img src="https://img.shields.io/github/v/release/tanstack/template" alt="Release"/>
@@ -45,6 +45,7 @@ Build a TanStack library with a framework-agnostic core, React and Solid adapter
 - React and Solid adapters with matching examples and docs structure
 - Devtools package placeholders for framework-specific integrations
 - pnpm, Nx, TypeScript, tsdown, Vitest, ESLint, Prettier, Changesets, and TypeDoc setup
+- ES2022 ESM-only packages with declarations, Node.js 20 support, and packed-package validation
 - GitHub workflows for PR checks, release, preview publishing, provenance, and autofix
 
 ### <a href="https://tanstack.com/template">Read the docs -></a>
@@ -62,6 +63,8 @@ Build a TanStack library with a framework-agnostic core, React and Solid adapter
 Start with [TEMPLATE_GUIDE.md](./TEMPLATE_GUIDE.md), then replace the placeholder names, package descriptions, docs, examples, source code, issue templates, and README copy with the new library's product-specific content.
 
 ## Development Commands
+
+Use the Node.js version in `.nvmrc` (`nvm install && nvm use`) and the pnpm version in `package.json` before running these commands.
 
 ```bash
 pnpm install

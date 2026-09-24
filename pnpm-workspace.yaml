@@ -5,5 +5,14 @@ preferWorkspacePackages: true
 packages:
   - 'examples/**/*'
   - 'packages/*'
-onlyBuiltDependencies:
-  - esbuild
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - vite@8.3.1 # Reviewed upstream patch release with npm provenance.
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - semver@6.3.1 # Legacy npm-maintained dependency; same exception as Hotkeys.
+allowBuilds:
+  esbuild: true
+  nx: true
+  unrs-resolver: false
