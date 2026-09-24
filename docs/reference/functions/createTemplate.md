@@ -3,8 +3,6 @@ id: createTemplate
 title: createTemplate
 ---
 
-# Function: createTemplate()
-
 ```ts
 function createTemplate(options?): Template;
 ```

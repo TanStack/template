@@ -9,5 +9,4 @@
 
 ## 🚀 Release Impact
 
-- [ ] This change affects published code, and I have generated a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md).
-- [ ] This change is docs/CI/dev-only (no release).
+This template repository does not release packages. Do not add changesets or bump package versions.

@@ -6,40 +6,45 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
-  cancel-in-progress: true
-
-env:
-  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  cancel-in-progress: false
 
 permissions:
-  contents: write
-  id-token: write
-  pull-requests: write
+  contents: read
 
 jobs:
   release:
     name: Release
-    if: github.repository_owner == 'TanStack'
+    # New libraries explicitly enable publishing after configuring their release setup.
+    if: github.repository_owner == 'TanStack' && vars.ENABLE_RELEASES == 'true'
+    permissions:
+      contents: write # Commit version changes, create tags and GitHub releases.
+      id-token: write # Authenticate npm trusted publishing with OIDC.
+      pull-requests: write # Create/update version PRs and release comments.
+      issues: write # Comment on linked issues after publishing.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@main
+        uses: TanStack/config/.github/setup@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
       - name: Run Tests
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
         run: pnpm run test:ci
       - name: Run Changesets (version or publish)
         id: changesets
-        uses: changesets/action@v1.7.0
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          version: pnpm run changeset:version
-          publish: pnpm run changeset:publish
-          commit: 'ci: Version Packages'
-          title: 'ci: Version Packages'
+          version-script: pnpm run changeset:version
+          publish-script: pnpm run changeset:publish
+          commit-message: 'ci: Version Packages'
+          pr-title: 'ci: Version Packages'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment on PRs about release
         if: steps.changesets.outputs.published == 'true'
-        uses: TanStack/config/.github/comment-on-release@main
+        uses: TanStack/config/.github/comment-on-release@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
         with:
-          published-packages: ${{ steps.changesets.outputs.publishedPackages }}
+          published-packages: ${{ steps.changesets.outputs.published-packages }}

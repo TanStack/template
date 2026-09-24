@@ -1,0 +1,16 @@
+# Security-sensitive automation and build configuration require core-team review.
+# New libraries must update this team and enable code-owner review in their ruleset.
+/.github/ @TanStack/tanstack-core
+/.nx/ @TanStack/tanstack-core
+/nx.json @TanStack/tanstack-core
+/.changeset/config.json @TanStack/tanstack-core
+/scripts/ @TanStack/tanstack-core
+/.npmrc @TanStack/tanstack-core
+/.nvmrc @TanStack/tanstack-core
+/pnpm-workspace.yaml @TanStack/tanstack-core
+/pnpm-lock.yaml @TanStack/tanstack-core
+**/package.json @TanStack/tanstack-core
+**/tsdown.config.* @TanStack/tanstack-core
+**/tsconfig*.json @TanStack/tanstack-core
+**/eslint.config.* @TanStack/tanstack-core
+/AGENTS.md @TanStack/tanstack-core

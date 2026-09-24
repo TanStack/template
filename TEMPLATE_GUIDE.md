@@ -38,6 +38,8 @@ Replace the following strings throughout the codebase:
 ### 4. GitHub Configuration
 
 - Update .github/ISSUE_TEMPLATE/bug_report.yml
+- Follow [.github/SECURITY_SETUP.md](./.github/SECURITY_SETUP.md) to configure branch rules, scanner/app access, Actions permissions, and publishing. Repository settings are a separate setup step.
+- Update `.github/CODEOWNERS` and import the ruleset starter after the first CI run
 - Update workflow files if needed
 - Update FUNDING.yml with your sponsor links
 - Update .changeset/config.json with your GitHub repository name
@@ -61,9 +63,16 @@ Replace the following strings throughout the codebase:
 
 ### 8. Runtime and Tooling Pins
 
-- Update `.npmrc` if your project needs a different `use-node-version`
-- Update `.nvmrc` if you want local Node version managers to match `.npmrc`
+- Keep `.nvmrc` and `package.json`'s Volta pin aligned so local checks and CI use the same Node.js version.
+- Keep the root `engines` aligned with the development tools. Published packages declare their own Node.js 20 minimum.
+- Keep pnpm settings in `pnpm-workspace.yaml`; `.npmrc` retains npm publishing configuration.
 - Update `pnpm-workspace.yaml` if you add package locations or build dependencies
+
+## Build and Publishing Defaults
+
+Packages target ES2022 and publish ESM with `.d.ts` declarations. Only `dist` and package metadata are included; CommonJS, source files, and source maps are excluded. Preserve explicit tsdown targets and exports when adding packages, including any additional entry points such as `@tanstack/template/types`.
+
+Each package's `test:build` runs strict publint and `scripts/verify-package.ts` against an actual pnpm tarball. PR and release checks run these validations. Full builds and `pnpm test` also enforce the core package's size budget.
 
 ## Package Structure
 
@@ -124,6 +133,10 @@ pnpm watch
 ```
 
 ## Release Process
+
+This repository never releases packages and does not accept changesets. The following process applies only to libraries created from the template. When initializing a library, update the template-only rules in `AGENTS.md`, `CONTRIBUTING.md`, and the pull request template, and set the GitHub Actions repository variable `ENABLE_RELEASES` to `true` after configuring publishing.
+
+The release scaffolding uses Changesets CLI 3, Changesets action 2, and the official GitHub changelog generator. The action uses `version-script`, `publish-script`, `commit-message`, `pr-title`, and `github-token` inputs, plus the `published-packages` output. Private examples are excluded from versioning and tagging.
 
 1. Make changes
 2. Run `pnpm changeset` to create a changeset
