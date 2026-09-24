@@ -36,7 +36,8 @@
     "test:sherif": "sherif",
     "test:types": "nx affected --targets=test:types --exclude=examples/**",
     "watch": "pnpm run build:all && nx watch --all -- pnpm run build:all",
-    "test:build": "nx affected --target=test:build"
+    "test:build": "nx affected --target=test:build",
+    "preview:publish": "pkg-pr-new publish --pnpm './packages/*' --template './examples/*/*'"
   },
   "nx": {
     "includedScripts": [
@@ -66,6 +67,7 @@
     "knip": "^6.38.0",
     "markdown-link-extractor": "^4.0.4",
     "nx": "^23.2.1",
+    "pkg-pr-new": "^0.0.88",
     "premove": "^4.0.0",
     "prettier": "^3.9.9",
     "prettier-plugin-svelte": "^4.1.1",

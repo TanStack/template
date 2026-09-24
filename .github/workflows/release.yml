@@ -6,21 +6,21 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
-  cancel-in-progress: true
-
-env:
-  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  cancel-in-progress: false
 
 permissions:
-  contents: write
-  id-token: write
-  pull-requests: write
+  contents: read
 
 jobs:
   release:
     name: Release
     # New libraries explicitly enable publishing after configuring their release setup.
     if: github.repository_owner == 'TanStack' && vars.ENABLE_RELEASES == 'true'
+    permissions:
+      contents: write # Commit version changes, create tags and GitHub releases.
+      id-token: write # Authenticate npm trusted publishing with OIDC.
+      pull-requests: write # Create/update version PRs and release comments.
+      issues: write # Comment on linked issues after publishing.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,8 +29,10 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@e4b48f16568324f76f467aa4c2aac2f05db632c3
+        uses: TanStack/config/.github/setup@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
       - name: Run Tests
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
         run: pnpm run test:ci
       - name: Run Changesets (version or publish)
         id: changesets
@@ -43,6 +45,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment on PRs about release
         if: steps.changesets.outputs.published == 'true'
-        uses: TanStack/config/.github/comment-on-release@e4b48f16568324f76f467aa4c2aac2f05db632c3
+        uses: TanStack/config/.github/comment-on-release@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
         with:
           published-packages: ${{ steps.changesets.outputs.published-packages }}

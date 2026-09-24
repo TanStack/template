@@ -38,6 +38,8 @@ Replace the following strings throughout the codebase:
 ### 4. GitHub Configuration
 
 - Update .github/ISSUE_TEMPLATE/bug_report.yml
+- Follow [.github/SECURITY_SETUP.md](./.github/SECURITY_SETUP.md) to configure branch rules, scanner/app access, Actions permissions, and publishing. Repository settings are a separate setup step.
+- Update `.github/CODEOWNERS` and import the ruleset starter after the first CI run
 - Update workflow files if needed
 - Update FUNDING.yml with your sponsor links
 - Update .changeset/config.json with your GitHub repository name

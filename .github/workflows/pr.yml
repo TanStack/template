@@ -7,9 +7,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-
 permissions:
   contents: read
 
@@ -24,12 +21,14 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@e4b48f16568324f76f467aa4c2aac2f05db632c3
+        uses: TanStack/config/.github/setup@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
       - name: Get base and head commits for `nx affected`
         uses: nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1 # v5.0.1
         with:
           main-branch-name: main
       - name: Run Checks
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
         run: pnpm run test:pr
   preview:
     name: Preview
@@ -41,11 +40,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@e4b48f16568324f76f467aa4c2aac2f05db632c3
+        uses: TanStack/config/.github/setup@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
       - name: Build Packages
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
         run: pnpm run build:all
       - name: Publish Previews
-        run: pnpx pkg-pr-new publish --pnpm './packages/*' --template './examples/*/*'
+        run: pnpm run preview:publish
   provenance:
     name: Provenance
     runs-on: ubuntu-latest
@@ -61,7 +62,7 @@ jobs:
   version-preview:
     permissions:
       contents: read
-      pull-requests: write
+      pull-requests: write # Post the changeset version preview.
     name: Version Preview
     runs-on: ubuntu-latest
     steps:
@@ -70,6 +71,6 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@e4b48f16568324f76f467aa4c2aac2f05db632c3
+        uses: TanStack/config/.github/setup@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main
       - name: Changeset Preview
-        uses: TanStack/config/.github/changeset-preview@e4b48f16568324f76f467aa4c2aac2f05db632c3
+        uses: TanStack/config/.github/changeset-preview@7bbdf583c2fc1a7f596283cd01e0e44c43f574f2 # main

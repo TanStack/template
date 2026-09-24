@@ -10,11 +10,22 @@
     ":disablePeerDependencies",
     ":maintainLockFilesMonthly",
     ":semanticCommits",
-    ":semanticCommitTypeAll(chore)"
+    ":semanticCommitTypeAll(chore)",
+    "helpers:pinGitHubActionDigests"
   ],
   "ignorePresets": [":ignoreModulesAndTests"],
   "labels": ["dependencies"],
   "rangeStrategy": "bump",
   "postUpdateOptions": ["pnpmDedupe"],
-  "ignoreDeps": ["@types/node", "node"]
+  "ignoreDeps": ["@types/node", "node", "typescript"],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "minimumReleaseAge": "1 day"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": false
+    }
+  ]
 }
